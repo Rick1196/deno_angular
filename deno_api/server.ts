@@ -1,6 +1,6 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
 import {APP_HOST, APP_PORT} from './config.ts';
-
+import router from './routes/routes.ts'
 const port = 8080;
 const server = new Application();
 // Logger
@@ -11,9 +11,8 @@ server.use(async (ctx, next) => {
 });
 
 //Test response
-server.use((ctx) => {
-  ctx.response.body = "Hello World!";
-});
+server.use(router.routes());
+server.use(router.allowedMethods());
 
 
 console.log(`Servidor escuchando en el puerto ${port}`);
