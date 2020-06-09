@@ -15,12 +15,11 @@ export default {
     return response;
   },
 
-
-  getById: async({ request, response, params }: {
+  getById: async ({ request, response, params }: {
     request: any;
     response: any;
     params: { id: string };
-  })=>{
+  }) => {
     response.status = 200;
     response.body = await personsService.getById(params.id);
     return;
@@ -89,7 +88,7 @@ export default {
       };
       return;
     }
-    let updated = await personsService.update(body.value,id);
+    let updated = await personsService.update(body.value, id);
     if (!updated) {
       response.status = 400;
       response.body = {
@@ -102,6 +101,17 @@ export default {
     response.body = {
       success: true,
     };
+    return;
+  },
+
+  generateCode: (
+    { request, response }: {
+      request: any;
+      response: any;
+    },
+  ) => {
+    response.status = 200;
+    response.body =  personsService.generateCode();
     return;
   },
 };

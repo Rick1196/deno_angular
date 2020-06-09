@@ -52,4 +52,9 @@ export default {
       { $set: doc },
     );
   },
+
+  generateCode: ()=>{
+    const code = v4.generate();
+    return code;
+  }
 };
