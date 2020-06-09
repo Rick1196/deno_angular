@@ -1,6 +1,5 @@
 import db from "../mongo.ts";
 import Person from "../interfaces/person.interface.ts";
-import { v4 } from "https://deno.land/std/uuid/mod.ts";
 const personsCollection = db.collection("persons");
 
 export default {
@@ -18,7 +17,7 @@ export default {
       nombre: person.nombre,
       edad: person.edad,
       sexo: person.sexo,
-      codigo: v4.generate(),
+      codigo: person.codigo,
       fechaAlta: new Date(),
       baja: false,
     };
@@ -53,8 +52,4 @@ export default {
     );
   },
 
-  generateCode: ()=>{
-    const code = v4.generate();
-    return code;
-  }
 };

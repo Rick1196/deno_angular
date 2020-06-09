@@ -5,9 +5,9 @@ import authMiddleware from '../middlewares/auth.middleware.ts';
 const router = new Router();
 
 router
-    .get("/persons", authMiddleware,personsController.getAllPersons)
+    .get("/persons",personsController.getAllPersons)
     .get("/persons/:id",authMiddleware,personsController.getById)
-    .post("/persons",authMiddleware, personsController.createPerson)
+    .post("/persons", personsController.createPerson)
     .delete("/persons/:id",authMiddleware,personsController.deletePerson)
     .put("/persons/:id",authMiddleware, personsController.updatePerson)
     .post("/auth/login",authController.login)

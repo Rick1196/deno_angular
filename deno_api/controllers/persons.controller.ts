@@ -105,20 +105,9 @@ export default {
     };
     return;
   },
-
-  generateCode: (
-    { request, response }: {
-      request: any;
-      response: any;
-    },
-  ) => {
-    response.status = 200;
-    response.body = personsService.generateCode();
-    return;
-  },
 };
 
-const personExist = async (id) => {
+const personExist = async (id:String) => {
   const person = await personsService.getById(id);
   if (!person) {
     return { success: false, message: "Person not found" };
