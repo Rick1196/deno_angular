@@ -1,0 +1,23 @@
+<aside class="menu">
+    <p class="menu-label">
+        Lorem ipsum.
+    </p>
+    <ul class="menu-list">
+        <li><a [routerLink]="" routerLinkActive="router-link-active"  [ngClass]="(active == 'Dashboard')?'is-active':''"  [queryParams]="{active: 'Dashboard'}">Dashboard</a></li>
+        <li><a [routerLink]="" [ngClass]="(active == 'Customers')?'is-active':''"  [queryParams]="{active: 'Customers'}">Customers</a></li>
+    </ul>
+    <p class="menu-label">
+        Lorem ipsum.
+    </p>
+    <ul class="menu-list">
+        <li><a [routerLink]="" [ngClass]="(active == 'Team Settings')?'is-active':''"  [queryParams]="{active: 'Team Settings'}"> Team Settings</a></li>
+        <li>
+            <a [routerLink]="" [ngClass]="(active == 'Manage Your Team')?'is-active':''"  [queryParams]="{active: 'Manage Your Team'}">Manage Your Team</a>
+            <ul>
+                <li><a [routerLink]="" [ngClass]="(active == 'Members')?'is-active':''"  [queryParams]="{active: 'Members'}">Members</a></li>
+                <li><a [routerLink]="" [ngClass]="(active == 'Plugins')?'is-active':''"  [queryParams]="{active: 'Plugins'}">Plugins</a></li>
+                <li><a [routerLink]="" [ngClass]="(active == 'Add a member')?'is-active':''"  [queryParams]="{active: 'Add a member'}">Add a member</a></li>
+            </ul>
+        </li>
+    </ul>
+</aside>

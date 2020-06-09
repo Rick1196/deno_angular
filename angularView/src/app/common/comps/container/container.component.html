@@ -1,0 +1,49 @@
+<!-- barra de navegacion -->
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+            <img src="assets/logo.png" width="60" height="190">
+            <strong>DENO demo</strong>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+            data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu"> 
+        <div class="navbar-center">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-light is-link" [routerLink]="['/']" routerLinkActive="router-link-active" >
+                        Home
+                    </a>
+                    <a class="button is-light is-link" [routerLink]="['/admin']" routerLinkActive="router-link-active" [queryParams]="{active: 'Manage Your Team'}">
+                        Admin
+                    </a>
+                    <a class="button is-light is-link" [routerLink]="['/auth/login']" routerLinkActive="router-link-active" >
+                        Login
+                    </a>
+                    <a class="button is-light is-link" [routerLink]="['/lista']">
+                        Personas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- div  de contenido-->
+<div class="container" id="wrapper">
+    <router-outlet></router-outlet>
+</div>
+<!-- footer siempre en el fondo-->
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Deno y Angular</strong> por <a href="https://github.com/Rick1196">Ricardo Manuel Perez Plata</a>.
+        </p>
+    </div>
+</footer>
