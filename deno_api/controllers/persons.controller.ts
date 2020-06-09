@@ -1,6 +1,10 @@
 import personsService from "../services/person.service.ts";
 
 export default {
+  /**
+   * response: Arreglo de Personas
+   * request, params: void
+   */
   getAllPersons: async ({ request, response, params }: {
     request: any;
     response: any;
@@ -9,6 +13,17 @@ export default {
     response.status = 200;
     response.body = await personsService.getAllPersons();
     return response;
+  },
+
+
+  getById: async({ request, response, params }: {
+    request: any;
+    response: any;
+    params: { id: string };
+  })=>{
+    response.status = 200;
+    response.body = await personsService.getById(params.id);
+    return;
   },
 
   createPerson: async ({ request, response }: {

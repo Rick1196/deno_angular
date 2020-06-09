@@ -8,6 +8,11 @@ export default {
     return await personsCollection.find({ baja: false }) as Person[];
   },
 
+  getById: async(id:any)=>{
+    const doc = await personsCollection.findOne({ _id: { "$oid": id } });
+    return doc;
+  },
+
   create: async (person: any) => {
     const doc: Person = {
       nombre: person.nombre,
