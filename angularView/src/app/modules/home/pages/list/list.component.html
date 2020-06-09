@@ -12,15 +12,8 @@
    </div>
 
    <div class="section">
-      <app-person-card></app-person-card>
-      <app-person-card></app-person-card>
-      <app-person-card></app-person-card>
-      <app-person-card></app-person-card>
-      <app-person-card></app-person-card>
-      <app-person-card></app-person-card>
-      <app-person-card></app-person-card>
-      <app-person-card></app-person-card>
-      <app-person-card></app-person-card>
-      <app-person-card></app-person-card>
+      <div *ngFor="let p of persons">
+         <app-person-card [person]="p"></app-person-card>
+      </div>
    </div>
 </div>
