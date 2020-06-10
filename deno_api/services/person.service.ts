@@ -46,6 +46,7 @@ export default {
     doc.nombre = body.nombre;
     doc.edad = body.edad;
     doc.codigo = body.codigo;
+    doc.sexo = body.sexo;
     return await personsCollection.updateOne(
       { _id: { "$oid": id } },
       { $set: doc },

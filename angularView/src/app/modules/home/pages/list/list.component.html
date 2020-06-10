@@ -4,9 +4,9 @@
       <nav class="breadcrumb" aria-label="breadcrumbs">
          <ul>
             <li><a [routerLink]="['/crear']" routerLinkActive="router-link-active">Registrar una persona</a></li>
-            <li><a (click)="filter('todos','todos')">Todos</a></li>
-            <li><a (click)="filter('sexo','H')">Hombres</a></li>
-            <li><a (click)="filter('sexo','M')">Mujeres</a></li>
+            <li [ngClass]="(param == 'todos')?'is-active':''" ><a (click)="filter('todos','todos')" [routerLink]="" routerLinkActive="router-link-active"  [queryParams]="{field:'todos',param: 'todos'}">Todos</a></li>
+            <li [ngClass]="(param == 'H')?'is-active':''" ><a (click)=" filter('sexo','H')" [routerLink]="" routerLinkActive="router-link-active"  [queryParams]="{field:'sexo',param: 'H'}">Hombres</a></li>
+            <li [ngClass]="(param == 'M')?'is-active':''" ><a (click)=" filter('sexo','M')" [routerLink]="" routerLinkActive="router-link-active"  [queryParams]="{field:'sexo',param: 'M'}">Mujeres</a></li>
          </ul>
       </nav>
    </div>

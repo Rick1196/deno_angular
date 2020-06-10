@@ -14,15 +14,29 @@
             <div class="card-content">
                 <div class="content">
                     <form [formGroup]="form">
-                        <input class="input mb-2" type="text" placeholder="Usuario">
-                        <input class="input mb-2" type="password" placeholder="Password">
+                        <input class="input mb-2" formControlName="username"
+                            [ngClass]="(form.controls.username.invalid == true)?'is-danger':''" type="text"
+                            placeholder="Usuario">
+                        <div *ngIf="form.controls.username.errors">
+                            <p class="help is-danger" *ngIf="form.controls.username.errors.required">
+                                Debe introducir el nombre de usuario
+                            </p>
+                        </div>
+                        <input class="input mb-2" type="password" formControlName="password" placeholder="Password">
+                        <div *ngIf="form.controls.password.errors">
+                            <p class="help is-danger" *ngIf="form.controls.password.errors.required">
+                                Debe intruducir un password
+                            </p>
+                        </div>
                     </form>
                 </div>
             </div>
             <footer class="card-footer">
-                <a href="#" class="card-footer-item">Iniciar</a>
+                <button (click)="loading = true;login()" [ngClass]="(loading == true)?'is-loading':''"
+                    [disabled]="loading == true||form.valid == false" class="card-footer-item button">Iniciar</button>
                 <a href="#" class="card-footer-item">Limpiar</a>
-                <a href="#" [routerLink]="['/auth/register']" routerLinkActive="router-link-active"  class="card-footer-item">No tienes un usuario?</a>
+                <a href="#" [routerLink]="['/auth/register']" routerLinkActive="router-link-active"
+                    class="card-footer-item">No tienes un usuario?</a>
             </footer>
         </div>
     </div>

@@ -6,10 +6,10 @@ const router = new Router();
 
 router
     .get("/persons",personsController.getAllPersons)
-    .get("/persons/:id",authMiddleware,personsController.getById)
+    .get("/persons/:id",personsController.getById)
     .post("/persons", personsController.createPerson)
-    .delete("/persons/:id",authMiddleware,personsController.deletePerson)
-    .put("/persons/:id",authMiddleware, personsController.updatePerson)
+    .delete("/persons/:id",personsController.deletePerson)
+    .put("/persons/:id", personsController.updatePerson)
     .post("/auth/login",authController.login)
     .post("/auth/signup",authController.signup);
 

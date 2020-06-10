@@ -14,21 +14,23 @@
         </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu"> 
+    <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-center">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a class="button is-light is-link" [routerLink]="['/']" routerLinkActive="router-link-active" >
+                    <a class="button is-light is-link" [routerLink]="['/']" routerLinkActive="router-link-active">
                         Home
                     </a>
-                    <a class="button is-light is-link" [routerLink]="['/admin']" routerLinkActive="router-link-active" [queryParams]="{active: 'Manage Your Team'}">
+                    <a class="button is-light is-link" [routerLink]="['/admin']" routerLinkActive="router-link-active"
+                        [queryParams]="{active: 'Manage Your Team'}">
                         Admin
                     </a>
-                    <a class="button is-light is-link" [routerLink]="['/auth/login']" routerLinkActive="router-link-active" >
-                        Login
-                    </a>
-                    <a class="button is-light is-link" [routerLink]="['/lista']">
+                    <a class="button is-light is-link" [queryParams]="{field:'todos',param: 'todos'}" [routerLink]="['/lista']">
                         Personas
+                    </a>
+                    <a class="button is-light is-link" *ngIf="sessionStatus.isLoggedIn == false;else user"
+                        [routerLink]="['/auth/login']" routerLinkActive="router-link-active">
+                        Login
                     </a>
                 </div>
             </div>
@@ -47,3 +49,16 @@
         </p>
     </div>
 </footer>
+
+<ng-template #user>
+    <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+            {{sessionStatus.user}}
+        </a>
+        <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" (click)="logout()">
+                Cerrar sesion
+            </a>
+        </div>
+    </div>
+</ng-template>

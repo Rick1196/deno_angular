@@ -1,4 +1,6 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
+import { oakCors } from "https://deno.land/x/cors/mod.ts";
+
 import { APP_HOST as hostname, APP_PORT as port } from "./config.ts";
 import router from "./routes/routes.ts";
 const server = new Application();

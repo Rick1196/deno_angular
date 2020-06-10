@@ -14,7 +14,14 @@ export class AuthService {
   };
 
   $session = new BehaviorSubject<any>(this.sessionStatus);
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) {
+    let token = localStorage.getItem('sessionid');
+    if(token){//verificamps si hay una sesion
+      this.sessionStatus.user = localStorage.getItem('user');
+      this.sessionStatus.isLoggedIn = true;
+      this.$session.next(this.sessionStatus);
+    }
+  }
 
   login(user: any): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -23,8 +30,9 @@ export class AuthService {
           this.sessionStatus.isLoggedIn = true;
           this.sessionStatus.user = user.username;
           this.$session.next(this.sessionStatus);
-          // en esta seccion se debe llevar a cabo el guardado del token de autenticacion
-          // ya se en localStorage o en una cookie
+          //guardamos el token en localStoarage para persistencia en caso de refrescar la pagina;
+          localStorage.setItem('sessionid',suc.token);
+          localStorage.setItem('user',user.username);
           resolve(suc);
         },
         (err) => reject(err),
@@ -34,11 +42,18 @@ export class AuthService {
 
   register(user: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._http.post<any>(`${environment.baseUrl}/auth/register`, user)
+      this._http.post<any>(`${environment.baseUrl}/auth/signup`, user)
         .subscribe(
           (suc) => resolve(suc),
           (err) => reject(err),
         );
     });
+  }
+
+  logout():void{
+    this.sessionStatus.isLoggedIn = false;
+    this.sessionStatus.user = '';
+    localStorage.removeItem('sessionid');
+    localStorage.removeItem('user');
   }
 }
