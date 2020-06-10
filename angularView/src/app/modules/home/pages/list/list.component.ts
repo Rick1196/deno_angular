@@ -1,24 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { Person } from '../../../../common/entities/person'
+import { Component, OnInit } from "@angular/core";
+import { Person } from "../../entities/person";
+import { PersonService } from "../../services/person.service";
+import { Observable } from "rxjs";
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: "app-list",
+  templateUrl: "./list.component.html",
+  styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  persons:Person[]  =[]
-
-  constructor() { }
-
-  ngOnInit(): void {
-    let person:Person = new Person("Ricardo Manuel","23");
-    this.persons.push(person)
-    this.persons.push(person)
-    this.persons.push(person)
-    this.persons.push(person)
-    this.persons.push(person)
-    this.persons.push(person)
+  persons: Person[] = [];
+  persons$: Observable<Person[]>;
+  constructor(private _person: PersonService) {
+    _person.getAllPersons().catch((error) => console.error(error));
   }
 
+  ngOnInit(): void {
+    this._person.$persons.subscribe({
+      next: (v: any) => {
+        this.persons = v;
+        console.log(v);
+        
+      },
+    });
+  }
 }

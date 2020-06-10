@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {ReactiveFormsModule, FormsModule} from '@angular/forms'
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './pages/home/home.component';
@@ -15,7 +16,7 @@ import { PersonCardComponent } from './comps/person-card/person-card.component';
   declarations: [HomeComponent, CreateComponent, EditComponent, ListComponent, PersonCardComponent],
   imports: [
     CommonModule,
-    HomeRoutingModule,ReactiveFormsModule, FormsModule
+    HomeRoutingModule,ReactiveFormsModule, FormsModule,HttpClientModule
   ]
 })
 export class HomeModule { }
