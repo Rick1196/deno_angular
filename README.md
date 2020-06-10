@@ -1,4 +1,7 @@
 # deno_angular
+## Tecnologias utlizadas
+- Deno.land
+- Angular(RxJs, Bulma CSS)
 ## Como instalar deno
 ### En Linux(Preferentemente) o Mac
 `curl -fsSL https://deno.land/x/install/install.sh | sh`
