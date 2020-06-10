@@ -3,7 +3,7 @@
         <div class="card">
             <header class="card-header">
                 <p class="card-header-title">
-                    Iniciar sesion
+                    Registrarse
                 </p>
                 <a href="#" class="card-header-icon" aria-label="more options">
                     <span class="icon">
@@ -14,15 +14,42 @@
             <div class="card-content">
                 <div class="content">
                     <form [formGroup]="form">
-                        <input class="input mb-2" type="text" placeholder="Usuario">
-                        <input class="input mb-2" type="password" placeholder="Password">
-                        <input class="input mb-2" type="password" placeholder="Confirmacion de password">
+                        <input [ngClass]="(form.controls.username.invalid == true)?'is-danger':''" class="input mb-2"
+                            formControlName="username" type="text" placeholder="Usuario">
+                        <div *ngIf="form.controls.username.errors">
+                            <p class="help is-danger" *ngIf="form.controls.username.errors.required">
+                                Debe introducir el nombre de usuario
+                            </p>
+                        </div>
+                        <input class="input mb-2" formControlName="password"
+                            [ngClass]="(form.controls.password.invalid == true)?'is-danger':''" type="password"
+                            placeholder="Password">
+                        <div *ngIf="form.controls.password.errors">
+                            <p class="help is-danger" *ngIf="form.controls.password.errors.required">
+                                Debe intruducir un password
+                            </p>
+                            <p class="help is-danger" *ngIf="form.controls.password.errors.minlength">
+                                Debe intruducir un password de mas de 5 caracteres
+                            </p>
+                        </div>
+                        <input class="input mb-2"
+                            [ngClass]="(form.controls.confirmPassword.invalid == true)?'is-danger':''"
+                            formControlName="confirmPassword" type="password" placeholder="Confirmar de password">
+                        <div *ngIf="form.controls.confirmPassword.errors">
+                            <p class="help is-danger" *ngIf="form.controls.confirmPassword.errors.mustMatch">
+                                Ambos password deben coincidir
+                            </p>
+                            <p class="help is-danger" *ngIf="form.controls.confirmPassword.errors.required">
+                                Debe intruducir un password
+                            </p>
+                        </div>
                     </form>
                 </div>
             </div>
             <footer class="card-footer">
-                <a href="#" class="card-footer-item">Iniciar</a>
-                <a href="#" class="card-footer-item">Limpiar</a>
+                <button class="button card-footer-item" [ngClass]="(loading == true)?'is-loading':''"
+                    [disabled]="loading == true||form.valid == false" (click)="loading=true;login()">Iniciar</button>
+                <a (click)="clean()" class="card-footer-item">Limpiar</a>
             </footer>
         </div>
     </div>

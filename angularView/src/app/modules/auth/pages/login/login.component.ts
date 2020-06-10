@@ -31,6 +31,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
+
+  clean():void{
+    this.form.reset();
+  }
+
   toastr(message: string, type: any): void {
     bulmaToast.toast({ message: message, type: type });
   }

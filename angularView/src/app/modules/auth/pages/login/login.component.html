@@ -22,7 +22,7 @@
                                 Debe introducir el nombre de usuario
                             </p>
                         </div>
-                        <input class="input mb-2" type="password" formControlName="password" placeholder="Password">
+                        <input class="input mb-2" [ngClass]="(form.controls.password.invalid == true)?'is-danger':''" type="password" formControlName="password" placeholder="Password">
                         <div *ngIf="form.controls.password.errors">
                             <p class="help is-danger" *ngIf="form.controls.password.errors.required">
                                 Debe intruducir un password
@@ -34,7 +34,7 @@
             <footer class="card-footer">
                 <button (click)="loading = true;login()" [ngClass]="(loading == true)?'is-loading':''"
                     [disabled]="loading == true||form.valid == false" class="card-footer-item button">Iniciar</button>
-                <a href="#" class="card-footer-item">Limpiar</a>
+                <a href="#" class="card-footer-item" (click)="clean()">Limpiar</a>
                 <a href="#" [routerLink]="['/auth/register']" routerLinkActive="router-link-active"
                     class="card-footer-item">No tienes un usuario?</a>
             </footer>
