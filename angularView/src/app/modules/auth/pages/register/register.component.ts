@@ -5,19 +5,25 @@ import {
   Validators,
   FormBuilder,
 } from "@angular/forms";
-import {Router} from '@angular/router'
+import { Router } from "@angular/router";
 import { MustMatch } from "../../_helpers/must-match.validators";
-import {AuthService} from '../../services/auth.service'
+import { AuthService } from "../../services/auth.service";
 import * as bulmaToast from "bulma-toast";
+
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent implements OnInit {
-  loading:boolean = false;
-  form: FormGroup;
-  constructor(private formBuilder: FormBuilder, private _auth:AuthService, private _router:Router) {}
+  loading: boolean = false; //si verdadero,bloquear el boton de guardado y mostrar un spinner
+  form: FormGroup; //
+  //inyeccion de: formbuilder, Servicio de Autenticacion, RouterModule
+  constructor(
+    private formBuilder: FormBuilder,
+    private _auth: AuthService,
+    private _router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -32,17 +38,19 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  login():void{
-    this._auth.register(this.form.value).then(suc=>{
-      this.toastr("Usuario registrado","is-primary");
-      this._router.navigate(['/auth/login']);
-    }).catch(err=>{
+  login(): void {
+    this._auth.register(this.form.value).then((suc) => {
+      //todo sale bien y el servicio regresa un 200
+      this.toastr("Usuario registrado", "is-primary");//,emsaje para el usuario
+      this._router.navigate(["/auth/login"]);//navegamos al login
+    }).catch((err) => {
+      //algo sale mal
       console.error(err);
-    })
+    });
   }
 
-  clean():void{
-    this.form.reset();
+  clean(): void {
+    this.form.reset();//limpiamos el formulario
   }
 
   toastr(message: string, type: any): void {

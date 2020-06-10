@@ -16,6 +16,7 @@ export class ListComponent implements OnInit {
   field:string = "";
   param:string = ""
   ngOnInit(): void {
+    //nos subscribimos a los parametros de url para obtner el filtro que debemos aplicar
     this._router.queryParams.subscribe((params) => {
       this.field = params.field;
       this.param = params.param;
@@ -27,7 +28,7 @@ export class ListComponent implements OnInit {
       },
     });
   }
-
+  //llamamos la la funcion filtrar para solo obtener un fragmento del almacen de Personas en person.service
   filter(field:string, parameter:string):void{
     this.persons = this._person.filter(field,parameter);
   }

@@ -26,7 +26,7 @@ export class Person {
     if (args.length == 3) {
       this.nombre = args[0];
       this.edad = args[1];
-      this.sexo = (args[2] == '')?"":args[3];
+      this.sexo = (args[2] == '')?"":args[2];
       this.codigo = this.generateCode();
     }
     if (args.length == 4) {

@@ -1,5 +1,4 @@
 .wrapper {
-    height: 100%;
     padding: 0;
     margin: 0;
     display: -webkit-box;
@@ -7,17 +6,20 @@
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+    //para alinear todo los elementos al centro de la pantalla
     align-items: center;
     justify-content: center;
     align-content: center;
-    height: 60vh;
+    height: 60vh; //para ajustar a la altura del contenedor principal
 }
-
+//para eliminar los bordes del boton y ajustarlo al footer del CARD
 .button {
     border-bottom: none;
     border-top: none;
     border-left: none;
 }
+
+//spinner de carga
 .button.is-loading::after {
     -webkit-animation: spinAround 500ms infinite linear;
     animation: spinAround 500ms infinite linear;

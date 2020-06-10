@@ -13,6 +13,7 @@
 
    <div class="section" *ngIf="persons;else void">
       <div *ngFor="let p of persons">
+         <!-- componente person-card.component, input=persona:Persona -->
          <app-person-card [person]="p"></app-person-card>
       </div>
    </div>

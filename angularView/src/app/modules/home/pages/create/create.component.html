@@ -3,8 +3,10 @@
         <form [formGroup]="form">
             <div class="columns">
                 <div class="column is-half">
+                    <!-- Clase condicional, si el formControl es invalido, se muestra en rojo el input -->
                     <input formControlName="nombre" [ngClass]="(form.controls.nombre.invalid == true)?'is-danger':''"
                         class="input mb-2" type="text" placeholder="Nombre">
+                    <!-- Mensaje de error para el usuario-->
                     <div *ngIf="form.controls.nombre.errors">
                         <p class="help is-danger" *ngIf="form.controls.nombre.errors.required">
                             Debe introducir el nombre de la persona
@@ -19,8 +21,10 @@
                             El nombre de la persona debe contener menos de 51 letras
                         </p>
                     </div>
+                    <!-- Clase condicional, si el formControl es invalido, se muestra en rojo el input -->
                     <input formControlName="edad" [ngClass]="(form.controls.edad.invalid == true)?'is-danger':''"
                         class="input mb-2" type="text" placeholder="Edad">
+                    <!-- Mensaje de error para el usuario-->
                     <div *ngIf="form.controls.edad.errors">
                         <p class="help is-danger" *ngIf="form.controls.edad.errors.required">
                             Debe introducir la edad de la persona
@@ -47,7 +51,8 @@
     </div>
     <div class="section">
         <div class="center">
-            <button class="button is-primary mr-1" [ngClass]="(loading == true)?'is-loading':''" [disabled]="form.valid == false" (click)="loading=true;save()">Guardar</button>
+            <button class="button is-primary mr-1" [ngClass]="(loading == true)?'is-loading':''"
+                [disabled]="form.valid == false" (click)="loading=true;save()">Guardar</button>
         </div>
     </div>
 </div>

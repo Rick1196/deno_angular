@@ -14,15 +14,20 @@
             <div class="card-content">
                 <div class="content">
                     <form [formGroup]="form">
+                        <!-- Clase condicional, si el formControl es invalido, se muestra en rojo el input -->
                         <input class="input mb-2" formControlName="username"
                             [ngClass]="(form.controls.username.invalid == true)?'is-danger':''" type="text"
                             placeholder="Usuario">
+                        <!-- Mensaje de error para el usuario-->
                         <div *ngIf="form.controls.username.errors">
                             <p class="help is-danger" *ngIf="form.controls.username.errors.required">
                                 Debe introducir el nombre de usuario
                             </p>
                         </div>
-                        <input class="input mb-2" [ngClass]="(form.controls.password.invalid == true)?'is-danger':''" type="password" formControlName="password" placeholder="Password">
+                        <!-- Clase condicional, si el formControl es invalido, se muestra en rojo el input -->
+                        <input class="input mb-2" [ngClass]="(form.controls.password.invalid == true)?'is-danger':''"
+                            type="password" formControlName="password" placeholder="Password">
+                        <!-- Mensaje de error para el usuario-->
                         <div *ngIf="form.controls.password.errors">
                             <p class="help is-danger" *ngIf="form.controls.password.errors.required">
                                 Debe intruducir un password
@@ -40,5 +45,4 @@
             </footer>
         </div>
     </div>
-
 </div>

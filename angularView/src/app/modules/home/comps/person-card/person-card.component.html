@@ -7,6 +7,7 @@
     <footer class="card-footer">
         <p class="card-footer-item">
             <span>
+                <!-- enviamos como parametros el ID de la Persona que vamos a editar -->
                 <a [routerLink]="['/editar']" routerLinkActive="router-link-active"  [queryParams]="{person: person._id.$oid}">Editar</a>
             </span>
         </p>
