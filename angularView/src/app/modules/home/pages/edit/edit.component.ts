@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../store/reducers/index';
+import {getAllPersons} from '../../store/person.selectors';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -13,9 +15,11 @@ export class EditComponent implements OnInit {
     sexo:new FormControl(''),
     codigo:new FormControl('')
   })
-  constructor() { }
+  persons$;
+  constructor(private store:Store<AppState>) { }
 
   ngOnInit(): void {
+    this.persons$ =  this.store.select(getAllPersons);
   }
 
 }

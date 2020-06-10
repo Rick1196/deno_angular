@@ -4,11 +4,15 @@ import {selectAll, selectIds} from './person.reducers';
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 export const personFeatureSelector = createFeatureSelector<PersonState>('persons');
-
 export const getAllPersons = createSelector(
   personFeatureSelector,
   selectAll
 );
+
+export const getPersonById = createSelector(
+  personFeatureSelector,
+  state => state.entities
+)
 
 export const arePersonsLoaded = createSelector(
   personFeatureSelector,

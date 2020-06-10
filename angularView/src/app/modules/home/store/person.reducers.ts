@@ -7,7 +7,11 @@ export interface PersonState extends EntityState<Person> {
   personsLoaded: boolean;
 }
 
-export const adapter: EntityAdapter<Person> = createEntityAdapter<Person>();
+export const adapter: EntityAdapter<Person> = createEntityAdapter<Person>(
+  {
+    selectId: Person => Person._id.$oid
+  }
+);
 
 export const initialState = adapter.getInitialState({
   personsLoaded: false,
@@ -36,4 +40,4 @@ export const personReducer = createReducer(
     })
   );
   
-  export const { selectAll, selectIds } = adapter.getSelectors();
+  export const {selectAll, selectIds } = adapter.getSelectors();

@@ -13,7 +13,6 @@ import {personActionTypes} from '../../store/person.actions';
 })
 export class ListComponent implements OnInit {
   persons$:Observable<Person[]>;
-  personToBeUpdate:Person;
 
   constructor(private _personService:PersonService,private store:Store<AppState>) { }
 

@@ -8,7 +8,8 @@ import { Person } from "../../entities/person";
 })
 export class PersonCardComponent implements OnInit {
   @Input()
-  person: Person;
+  person: Person; 
+  personToBeUpdate:Person;
   constructor() {}
 
   ngOnInit(): void {

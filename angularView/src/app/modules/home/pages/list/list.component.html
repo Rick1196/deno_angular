@@ -3,7 +3,7 @@
    <div class="section">
       <nav class="breadcrumb" aria-label="breadcrumbs">
          <ul>
-            <li><a [routerLink]="['/crear']" routerLinkActive="router-link-active" >Registrar una persona</a></li>
+            <li><a [routerLink]="['/crear']" routerLinkActive="router-link-active">Registrar una persona</a></li>
             <li><a href="#">Todos</a></li>
             <li><a href="#">Hombres</a></li>
             <li><a href="#">Mujeres</a></li>
@@ -12,6 +12,7 @@
    </div>
 
    <div class="section">
+
       <div *ngFor="let p of persons$|async">
          <app-person-card [person]="p"></app-person-card>
       </div>

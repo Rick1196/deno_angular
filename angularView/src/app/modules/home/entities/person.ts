@@ -1,17 +1,17 @@
 interface IPerson {
-  id: any;
+  _id: any;
   nombre: String;
   edad: Number;
   sexo: String;
-  codigo: String;
+  codigo: string;
 }
 
 export class Person {
-    id:any;
+    _id:any;
   nombre: String;
   edad: Number;
   sexo: String;
-  codigo: String;
+  codigo: string;
   public constructor(...args: Array<any>){
     if(args.length == 0)
         throw new Error('Arguments are not defined.');
@@ -27,8 +27,8 @@ export class Person {
         this.sexo = args[3];
         this.codigo = this.generateCode();
     }
-    if(args.length == 4){
-        this.id = args[0];
+    if(args.length > 4){
+        this._id = args[0];
         this.nombre = args[1];
         this.nombre = args[2];
         this.sexo = args[3];
@@ -36,7 +36,7 @@ export class Person {
     }
   }
 
-  public generateCode(): String {
+  public generateCode(): string {
     return Math.random().toString(36).substring(2, 10) +
       Math.random().toString(36).substring(2, 10).toUpperCase();
   }
