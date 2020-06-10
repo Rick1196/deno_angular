@@ -10,7 +10,6 @@ import { Observable } from "rxjs";
 })
 export class ListComponent implements OnInit {
   persons: Person[] = [];
-  persons$: Observable<Person[]>;
   constructor(private _person: PersonService) {
     _person.getAllPersons().catch((error) => console.error(error));
   }
@@ -18,10 +17,12 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this._person.$persons.subscribe({
       next: (v: any) => {
-        this.persons = v;
-        console.log(v);
-        
+        this.persons = v;        
       },
     });
+  }
+
+  filter(field:string, parameter:string):void{
+    this.persons = this._person.filter(field,parameter);
   }
 }

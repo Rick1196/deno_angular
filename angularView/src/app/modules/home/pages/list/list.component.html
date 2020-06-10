@@ -3,17 +3,32 @@
    <div class="section">
       <nav class="breadcrumb" aria-label="breadcrumbs">
          <ul>
-            <li><a [routerLink]="['/crear']" routerLinkActive="router-link-active" >Registrar una persona</a></li>
-            <li><a href="#">Todos</a></li>
-            <li><a href="#">Hombres</a></li>
-            <li><a href="#">Mujeres</a></li>
+            <li><a [routerLink]="['/crear']" routerLinkActive="router-link-active">Registrar una persona</a></li>
+            <li><a (click)="filter('todos','todos')">Todos</a></li>
+            <li><a (click)="filter('sexo','H')">Hombres</a></li>
+            <li><a (click)="filter('sexo','M')">Mujeres</a></li>
          </ul>
       </nav>
    </div>
 
-   <div class="section">
+   <div class="section" *ngIf="persons;else void">
       <div *ngFor="let p of persons">
          <app-person-card [person]="p"></app-person-card>
       </div>
    </div>
 </div>
+
+<ng-template #void>
+   <section class="hero is-info">
+      <div class="hero-body">
+         <div class="container">
+            <h1 class="title">
+               No hay personas para mostrar
+            </h1>
+            <h2 class="subtitle">
+               Lista vacia
+            </h2>
+         </div>
+      </div>
+   </section>
+</ng-template>

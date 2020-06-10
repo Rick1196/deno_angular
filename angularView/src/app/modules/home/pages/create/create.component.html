@@ -1,16 +1,53 @@
 <div class="contianer">
     <div class="section">
-        <div class="columns">
-            <div class="column is-half">
-                <input class="input mb-2" type="text" placeholder="Nombre">
-                <input class="input mb-2" type="text" placeholder="Edad">
-                <input class="input mb-2" type="text" placeholder="Sexo">
+        <form [formGroup]="form">
+            <div class="columns">
+                <div class="column is-half">
+                    <input formControlName="nombre" [ngClass]="(form.controls.nombre.invalid == true)?'is-danger':''"
+                        class="input mb-2" type="text" placeholder="Nombre">
+                    <div *ngIf="form.controls.nombre.errors">
+                        <p class="help is-danger" *ngIf="form.controls.nombre.errors.required">
+                            Debe introducir el nombre de la persona
+                        </p>
+                        <p class="help is-danger" *ngIf="form.controls.nombre.errors.pattern">
+                            El nombre de la persona solo puede contener letras
+                        </p>
+                        <p class="help is-danger" *ngIf="form.controls.nombre.errors.minlength">
+                            El nombre de la persona debe contener mas de 4 letras
+                        </p>
+                        <p class="help is-danger" *ngIf="form.controls.nombre.errors.maxlength">
+                            El nombre de la persona debe contener menos de 51 letras
+                        </p>
+                    </div>
+                    <input formControlName="edad" [ngClass]="(form.controls.edad.invalid == true)?'is-danger':''"
+                        class="input mb-2" type="text" placeholder="Edad">
+                    <div *ngIf="form.controls.edad.errors">
+                        <p class="help is-danger" *ngIf="form.controls.edad.errors.required">
+                            Debe introducir la edad de la person
+                        </p>
+                        <p class="help is-danger" *ngIf="form.controls.edad.errors.pattern">
+                            La edad solo puede contener numeros
+                        </p>
+                        <p class="help is-danger" *ngIf="form.controls.edad.errors.min">
+                            La persona de ser mayor de 9 años
+                        </p>
+                        <p class="help is-danger" *ngIf="form.controls.edad.errors.max">
+                            La persona de ser menor de 91 años
+                        </p>
+                    </div>
+                    <div class="select" style="width: 100%;">
+                        <select formControlName="sexo" style="width: 100%;">
+                            <option value="H">Hombre</option>
+                            <option value="M">Mujer</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
     <div class="section">
         <div class="center">
-            <button class="button is-primary mr-1">Guardar</button>
+            <button class="button is-primary mr-1" [ngClass]="(loading == true)?'is-loading':''" [disabled]="form.valid == false" (click)="loading=true;save()">Guardar</button>
         </div>
     </div>
 </div>

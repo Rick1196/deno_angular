@@ -1,8 +1,8 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
-import {APP_HOST, APP_PORT} from './config.ts';
-import router from './routes/routes.ts'
-const port = 8080;
+import { APP_HOST as hostname, APP_PORT as port } from "./config.ts";
+import router from "./routes/routes.ts";
 const server = new Application();
+const secure = true;
 // Logger
 server.use(async (ctx, next) => {
   await next();
@@ -10,10 +10,14 @@ server.use(async (ctx, next) => {
   console.log(`${ctx.request.method} ${ctx.request.url} - ${rt}`);
 });
 
-//Test response
+server.use(oakCors());
 server.use(router.routes());
 server.use(router.allowedMethods());
 
-
-console.log(`Servidor escuchando en el puerto ${port}`);
-await server.listen(`${APP_HOST}:${APP_PORT}`);
+server.addEventListener("listen", ({ hostname, port, secure }) => {
+  console.log(
+    `--- Escuchando en: ${secure ? "https://" : "http://"}${hostname ??
+      "localhost"}:${port}`,
+  );
+});
+await server.listen(`${hostname}:${port}`);

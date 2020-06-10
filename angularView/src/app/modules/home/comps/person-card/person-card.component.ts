@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Person } from "../../../../common/entities/person";
+import { Person } from "../../entities/person";
 
 @Component({
   selector: "app-person-card",
