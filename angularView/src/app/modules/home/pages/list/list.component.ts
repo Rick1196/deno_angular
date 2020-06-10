@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Person } from '../../../../common/entities/person'
-
+import { Person } from '../../entities/person'
+import { Observable } from 'rxjs';
+import {PersonService} from '../../services/person.service'
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../store/reducers/index';
+import {getAllPersons} from '../../store/person.selectors';
+import {personActionTypes} from '../../store/person.actions';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  persons:Person[]  =[]
+  persons$:Observable<Person[]>;
+  personToBeUpdate:Person;
 
-  constructor() { }
+  constructor(private _personService:PersonService,private store:Store<AppState>) { }
 
   ngOnInit(): void {
-    let person:Person = new Person("Ricardo Manuel","23");
-    this.persons.push(person)
-    this.persons.push(person)
-    this.persons.push(person)
-    this.persons.push(person)
-    this.persons.push(person)
-    this.persons.push(person)
+    this.persons$ =  this.store.select(getAllPersons);
   }
 
 }
