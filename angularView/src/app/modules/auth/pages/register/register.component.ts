@@ -45,6 +45,8 @@ export class RegisterComponent implements OnInit {
       this._router.navigate(["/auth/login"]);//navegamos al login
     }).catch((err) => {
       //algo sale mal
+      this.toastr("El nombre de usuario ya existe.", "is-danger");//,emsaje para el usuario
+      this.loading = false;
       console.error(err);
     });
   }

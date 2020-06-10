@@ -1,9 +1,14 @@
 import authService from "../services/auth.service.ts";
 export default {
-  signup: async ( { request, response }: {
-      request: any;
-      response: any;
-    }) => {
+  /**
+   * response: id:String
+   * request, params: void
+   * request, body:User
+   */
+  signup: async ({ request, response }: {
+    request: any;
+    response: any;
+  }) => {
     let data = await request.body();
     if (!request.hasBody) {
       response.status = 400;
@@ -13,11 +18,26 @@ export default {
       };
       return;
     }
+    const exist = await userExist(data.value.username);
+    console.log(exist,data.value.username);
+    
+    if (exist != null) {
+      response.status = 406;
+      response.body = {
+        success: false,
+        message: "El nombre de usuario ya existe",
+      };
+      return;
+    }
     response.status = 201;
     response.body = await authService.signup(data.value);
     return;
   },
-
+  /**
+   * response: token:String
+   * request, params: void
+   * request, body:User
+   */
   login: async ({ request, response }: {
     request: any;
     response: any;
@@ -44,4 +64,9 @@ export default {
     response.body = auth;
     return;
   },
+};
+
+const userExist = async (username: String) => {
+  const user = await authService.isRegistered(username);
+  return user;
 };

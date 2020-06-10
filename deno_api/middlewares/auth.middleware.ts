@@ -1,11 +1,11 @@
 import { Context } from "https://deno.land/x/oak/mod.ts";
 import { validateJwt } from "https://deno.land/x/djwt/validate.ts";
-import { SECRET as key } from "../config.ts";
+import { SECRET as key } from "../config.ts";//importamos el secret key del archivo de configuracion
 
 const authMiddleware = async (ctx: Context, next: any) => {
   const headers: Headers = ctx.request.headers;
-  // Taking JWT from Authorization header and comparing if it is valid JWT token, if YES - we continue,
-  // otherwise we return with status code 401
+  //tomamos el JWT del Header de autorizacion y los comparamos, si valido continuamos
+  // de otro modo regresamo un status 401 unauthorized
   const authorization = headers.get("Authorization");
   if (!authorization) {
     ctx.response.status = 401;

@@ -15,6 +15,10 @@ export default {
     return response;
   },
 
+  /**
+   * response: Persona
+   * request, params: id:String
+   */
   getById: async ({ request, response, params }: {
     request: any;
     response: any;
@@ -33,6 +37,11 @@ export default {
     return;
   },
 
+  /**
+   * response: id:String
+   * request, params: void
+   * request, body:Person
+   */
   createPerson: async ({ request, response }: {
     request: any;
     response: any;
@@ -50,7 +59,10 @@ export default {
     response.body = await personsService.create(data.value);
     return;
   },
-
+  /**
+   * response: id:String
+   * request, params: id:String
+   */
   deletePerson: async (
     { request, response, params }: {
       request: any;
@@ -75,6 +87,11 @@ export default {
     return;
   },
 
+  /**
+   * response: id:String
+   * request, params: id:String
+   * request, body:Person
+   */
   updatePerson: async (
     { request, response, params }: {
       request: any;
@@ -107,7 +124,7 @@ export default {
   },
 };
 
-const personExist = async (id:String) => {
+const personExist = async (id: String) => {
   const person = await personsService.getById(id);
   if (!person) {
     return { success: false, message: "Person not found" };
